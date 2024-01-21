@@ -33,7 +33,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-final class Q6 {
+final class Q007 {
 	public static void main(final String[] args) {
 		IntStream.range(0, VvyLw.MULTI ? VvyLw.sc.ni() : 1).forEach(i -> VvyLw.solve());
 		VvyLw.o.flush();
@@ -57,8 +57,9 @@ final class VvyLw extends Utility {
 	static final int[] dx = {0, -1, 1, 0, 0, -1, -1, 1, 1};
 	static final int[] dy = {0, 0, 0, -1, 1, -1, 1, -1, 1};
 	static final void solve() {
-		final var n = 100;
-		o.out(sqr(n * (n + 1) / 2) - IntStream.rangeClosed(1, n).mapToLong(Utility::sqr).sum());
+		final var p = new PrimeTable(200000);
+		final int n = 10000;
+		o.out(p.get()[n]);
 	}
 }
 class Utility {
