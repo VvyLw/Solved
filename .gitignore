@@ -3,3 +3,4 @@ a.cpp
 *.bundled.cpp
 test
 contest.acc.json
+*.class
