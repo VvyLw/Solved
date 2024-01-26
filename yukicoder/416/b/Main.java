@@ -46,7 +46,7 @@ final class VvyLw extends Utility {
 		final int n = sc.ni();
 		final int[] x = sorted(sc.ni(n)), y = reverse(sorted(sc.ni(n)));
 		final int r = (int) IntStream.range(0, n).filter(i -> x[i] < y[i]).count();
-		o.out(mod(factor(r) * factor(n - r), MOD));
+		o.out(mod(factor(r, MOD) * factor(n - r, MOD), MOD));
 	}
 }
 class Utility {
@@ -200,24 +200,26 @@ class Utility {
 		}
 		return res;
 	}
-	protected static final long binom(int n, final int r) {
+	protected static final long binom(final int n, final int r) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res /= i;
 		}
 		return res;
 	}
-	protected static final long binom(int n, final int r, final long mod) {
+	protected static final long binom(final int n, final int r, final long mod) {
 		if(r < 0 || n < r) {
 			return 0;
 		}
+		int tmp = n;
 		long res = 1;
-		for(int i = 1; i <= r; ++i) {
-			res *= n--;
+		for(int i = 1; i <= min(n - r, r); ++i) {
+			res *= tmp--;
 			res %= mod;
 			res /= i;
 			res %= mod;
