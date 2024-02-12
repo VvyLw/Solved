@@ -1,45 +1,29 @@
-/*#pragma GCC optimize("O3")
-#pragma GCC optimize("unroll-loops")//*/
-//#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
-#include "C++/template.hpp"
+#include <iostream>
 #include "C++/LazySegmentTree.hpp"
-
-using namespace std;
-using namespace zia_qu;
-using namespace Lady_sANDy;
-using namespace Heileden;
-
 int main() {
-	VvyLw::wa_haya_exe();
-	now(start);
-	int T=1;
-	//in(T);
-	while(T--) VvyLw::solve();
-	now(stop);
-	time(start, stop);
-}
-
-// --------------------------------------------------------------------------------------------------------------
-
-
-
-void VvyLw::solve() {
-	INT(n,m);
-	VEC(ll,a,n);
-	VEC(int,b,m);
-	RUQRSM<ll,0> seg(a);
-	each(el,b) {
-		ll c=seg[el];
-		seg.set(el,0);
-        const ll q=c/n;
-		c%=n;
-        seg.update(0,n,q);
-        if(++el+c<=n) {
-            seg.update(el,el+c,1);
+	std::cin.tie(nullptr) -> sync_with_stdio(false);
+	int n, m;
+	std::cin >> n >> m;
+	std::vector<int64_t> a(n), b(m);
+	for(auto &el: a) {
+		std::cin >> el;
+	}
+	for(auto &el: b) {
+		std::cin >> el;
+	}
+	RUQRMX<int64_t> seg(a, 0);
+	for(auto el: b) {
+		int64_t c = seg[el];
+		seg.set(el, 0);
+        const int64_t q = c / n;
+		c %= n;
+        seg.update(0, n, q);
+        if(++el + c <= n) {
+            seg.update(el, el + c, 1);
         } else {
-            seg.update(el,n,1);
-            seg.update(0,el+c-n,1);
+            seg.update(el, n, 1);
+            seg.update(0, el + c - n, 1);
         }
 	}
-	out(seg);
+	std::cout << seg << '\n';
 }
