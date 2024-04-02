@@ -24,16 +24,19 @@ int main() {
 void VvyLw::solve() {
     INT(n,m);
     VEC(int,a,n);
-    w_graph<false> g(n);
+    w_graph<false> g(2*n);
+    rep(i,1,n) {
+        g.add(i,i+n,-a[i-1]);
+    }
     while(m--) {
         INT(u,v,c);
-        g.add(u,v,a[v-1]-c);
+        g.add(u+n,v,c);
     }
     const auto bf=g.spfa(0);
     dump(bf);
-    if(bf[n-1]==INT64_MAX) {
+    if(bf.empty()) {
         out("inf");
     } else {
-        out(bf[n-1]);
+        out(-bf.back());
     }
 }
