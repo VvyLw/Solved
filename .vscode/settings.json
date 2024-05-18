@@ -1,6 +1,21 @@
 {
     "files.associations": {
         "algorithm": "cpp",
-        "concepts": "cpp"
+        "concepts": "cpp",
+        "unordered_map": "cpp",
+        "span": "cpp",
+        "any": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "optional": "cpp",
+        "variant": "cpp",
+        "string": "cpp",
+        "forward_list": "cpp",
+        "ratio": "cpp",
+        "random": "cpp",
+        "ranges": "cpp"
     }
 }
