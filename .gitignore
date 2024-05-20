@@ -5,3 +5,4 @@ test
 contest.acc.json
 *.o
 main
+/.vscode
