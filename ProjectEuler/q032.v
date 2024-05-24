@@ -7,11 +7,11 @@ import regex as re
 import strings{new_builder}
 import rand
 import time{StopWatch}
-import datatypes{Set,Queue,Stack}
+import datatypes{Queue,Stack}
 
 pub fn solve()! {
 	mut a:=[]int{len:9,init:index+1}
-	mut s:=Set[int]{}
+	mut s:=[]int{}
 	for {
 		for i in 1..8 {
 			mut x:=a[0..i].map(it.str()).join('').i64()
@@ -19,7 +19,7 @@ pub fn solve()! {
 				mut y:=a[i..j].map(it.str()).join('').int()
 				z:=a[j..9].map(it.str()).join('').int()
 				if x*y==z {
-					s.add(z)
+					s<<z
 				}
 			}
 		}
@@ -27,10 +27,7 @@ pub fn solve()! {
 			break
 		}
 	}
-	// dump(s)
-	// dump(s.rest()!)
-	// dump(s.pick()!)
-	println(s.pick()!+ar.sum(s.rest()!)!)
+	println(ar.sum(ar.distinct(s))!)
 }
 
 pub const (
