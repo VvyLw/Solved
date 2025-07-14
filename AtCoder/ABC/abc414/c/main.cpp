@@ -12,6 +12,7 @@ int main() {
 
 // --------------------------------------------------------------------------------------------------------------
 
+constexpr int MAX = 1e6;
 
 inline void VvyLw::solve() noexcept {
 	int a;
@@ -19,21 +20,20 @@ inline void VvyLw::solve() noexcept {
 	input(a, n);
 	std::unordered_set<i64> s;
 	const auto fn = [](const i64 &x, const int p = 0) -> i64 {
-		std::string s = std::to_string(x);
-		const auto t = s.substr(0, std::ssize(s) - p);
-		iter::reverse(s);
-		return man::to_ten(t + s);
+		const std::string s = std::to_string(x);
+		auto t = s;
+		iter::reverse(t);
+		return man::to_ten(s + t.substr(p));
 	};
 	const auto ok = [&n, &a](const i64 &x) -> bool {
 		return x <= n && man::is_palindrome(man::ten_to(x, a));
 	};
-	for(const auto i: iota(1) | take(1000000LL)) {
-		const i64 x = fn(i), y = fn(i, 1);
-		if(ok(x)) {
-			s.emplace(x);
-		}
-		if(ok(y)) {
-			s.emplace(y);
+	for(const auto i: iota(1) | take(MAX)) {
+		for(const auto j: iota(0, 2)) {
+			const auto x = fn(i, j);
+			if(ok(x)) {
+				s.emplace(x);
+			}
 		}
 	}
 	println(man::sum(s));
